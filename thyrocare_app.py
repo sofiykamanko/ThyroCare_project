@@ -4,7 +4,6 @@ import joblib
 import pandas as pd
 from PIL import Image
 import time
-import winsound
 
 
 path_model_risk='model_risk.pkl'
