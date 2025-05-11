@@ -169,7 +169,7 @@ t3 = st.number_input("T3 рівень", min_value=0.0, format="%.2f")
 t4 = st.number_input("T4 рівень", min_value=0.0, format="%.2f")
 nodule = st.number_input("Розмір вузла (мм)", min_value=0.0, format="%.2f")
 
-exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагнозу")
+exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
 
 if st.button("Продовжити"):
     user_input = {
