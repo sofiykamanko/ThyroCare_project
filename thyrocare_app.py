@@ -4,7 +4,7 @@ import joblib
 import pandas as pd
 from PIL import Image
 import time
-import pygame
+
 
 
 
@@ -174,9 +174,9 @@ t4 = st.number_input("T4 рівень", min_value=0.0, format="%.2f")
 nodule = st.number_input("Розмір вузла (мм)", min_value=0.0, format="%.2f")
 
 exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
-pygame.mixer.init()
+
 if st.button("Прогноз"):
-    pygame.mixer.Sound('path_to_sound.wav').play()
+
     with st.spinner('АІ-система створює персональний прогноз...'):
         # Затримка для симуляції часу обчислень (4 секунди)
         time.sleep(4)
