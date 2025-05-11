@@ -4,12 +4,12 @@ import joblib
 import pandas as pd
 from PIL import Image
 
-path_model_risk=r'C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb/model_risk.pkl'
-path_model_diag=r'C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb/model_diag.pkl'
-path_scaler=r'C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb\scaler.pkl'
-path_thresholds_risk=r'C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb/thresholds_risk.npy'
-path_thresholds_diag=r'C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb/threshold_diag.npy'
-path_model_diag2=r'C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb/model_diag2.pkl'
+path_model_risk='model_risk.pkl'
+path_model_diag='model_diag.pkl'
+path_scaler='scaler.pkl'
+path_thresholds_risk='thresholds_risk.npy'
+path_thresholds_diag='threshold_diag.npy'
+path_model_diag2='model_diag2.pkl'
 
 model_risk = joblib.load(path_model_risk)
 model_diag = joblib.load(path_model_diag)
@@ -65,7 +65,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-logo_path = "C:/Users/asusz/OneDrive/Робочий стіл/СА/ThyroCare/thyrocare_veb/logo_super.png"
+logo_path = "logo_super.png"
 logo = Image.open(logo_path)
 
         
