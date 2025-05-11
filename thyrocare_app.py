@@ -174,7 +174,7 @@ nodule = st.number_input("Розмір вузла (мм)", min_value=0.0, format
 exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
 
 if st.button("Продовжити"):
-    with st.spinner('Модель прогнозує...'):
+    with st.spinner('АІ-система створює персональний прогноз...'):
         # Затримка для симуляції часу обчислень (4 секунди)
         time.sleep(4)
     user_input = {
