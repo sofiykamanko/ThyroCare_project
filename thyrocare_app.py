@@ -3,6 +3,8 @@ import numpy as np
 import joblib
 import pandas as pd
 from PIL import Image
+import time
+
 
 path_model_risk='model_risk.pkl'
 path_model_diag='model_diag.pkl'
