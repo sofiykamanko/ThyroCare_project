@@ -20,6 +20,12 @@ thresholds_risk = np.load(path_thresholds_risk)
 threshold_diag = np.load(path_thresholds_diag)
 model_diag2=joblib.load(path_model_diag2)
 
+welcome_message = st.empty()
+welcome_message.markdown("<h1 style='color:#ED5C29;'>Ласкаво просимо до ThyroCare! 👋</h1>", unsafe_allow_html=True)
+
+time.sleep(3)
+welcome_message.empty()
+
 st.set_page_config(page_title="ThyroCare", layout="centered")
 
 st.markdown("""
