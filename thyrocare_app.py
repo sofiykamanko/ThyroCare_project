@@ -126,7 +126,7 @@ st.markdown("""
 # Країна 
 st.markdown('<div class="country-label">Вкажіть країну вашого проживання.</div>', unsafe_allow_html=True)
 st.markdown("Наприклад, " + ", ".join(f"`{c}`" for c in visible_countries)+ " та інші.")
-country_input = st.text_input("Введіть без пробілів, з великої літери.").strip().lower()
+country_input = st.text_input("Введіть без зайвих пробілів, з великої літери.").strip().lower()
 
 if country_input:
     if country_input in country_to_code:
@@ -143,7 +143,7 @@ else:
 # Етнічна група 
 st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне походження.</div>', unsafe_allow_html=True)
 st.markdown("Наприклад, `" + "`, `".join(ethnicity_to_code.keys()) + "`"+ "та інші.")
-ethnicity_input = st.text_input("Введіть без пробілів.").strip().lower()
+ethnicity_input = st.text_input("Введіть без зайвих пробілів.").strip().lower()
 
 if ethnicity_input:
     if ethnicity_input in ethnicity_to_code:
@@ -159,12 +159,12 @@ else:
 
 # Медичні показники 
 
-family_history = st.radio("Чи є у вас сімейна історія захворювання?", ["Ні", "Так"])
-radiation = st.radio("Чи мали випадок значного радіаційного опромінення?", ["Ні", "Так"])
-iodine = st.radio("Чи є у вас дефіцит йоду?", ["Ні", "Так"])
-smoking = st.radio("Чи палите ви?", ["Ні", "Так"])
-obesity = st.radio("Наявність ожиріння", ["Ні", "Так"])
-diabetes = st.radio("Наявність цукрового діабету", ["Ні", "Так"])
+family_history = st.radio("Чи є у вас сімейна історія захворювання?", ["Ні", "Так"], index=None)
+radiation = st.radio("Чи мали випадок значного радіаційного опромінення?", ["Ні", "Так"], index=None)
+iodine = st.radio("Чи є у вас дефіцит йоду?", ["Ні", "Так"], index=None)
+smoking = st.radio("Чи палите ви?", ["Ні", "Так"], index=None)
+obesity = st.radio("Наявність ожиріння", ["Ні", "Так"], index=None)
+diabetes = st.radio("Наявність цукрового діабету", ["Ні", "Так"], index=None)
 
 tsh = st.number_input(
     "Рівень тиреотропного гормону (у мкМО/мл):", 
