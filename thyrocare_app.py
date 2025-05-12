@@ -6,8 +6,6 @@ from PIL import Image
 import time
 
 
-
-
 path_model_risk='model_risk.pkl'
 path_model_diag='model_diag.pkl'
 path_scaler='scaler.pkl'
@@ -127,7 +125,7 @@ st.markdown("""
 
 # Країна 
 st.markdown('<div class="country-label">Вкажіть країну вашого проживання.</div>', unsafe_allow_html=True)
-st.markdown("Наприклад, " + ", ".join(f"`{c}`" for c in visible_countries))
+st.markdown("Наприклад, " + ", ".join(f"`{c}`" for c in visible_countries)+ " та інші.")
 country_input = st.text_input("Введіть без пробілів, з великої літери.").strip().lower()
 
 if country_input:
@@ -144,7 +142,7 @@ else:
 
 # Етнічна група 
 st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне походження.</div>', unsafe_allow_html=True)
-st.markdown("Наприклад, `" + "`, `".join(ethnicity_to_code.keys()) + "`")
+st.markdown("Наприклад, `" + "`, `".join(ethnicity_to_code.keys()) + "та інші.")
 ethnicity_input = st.text_input("Введіть без пробілів.").strip().lower()
 
 if ethnicity_input:
@@ -165,7 +163,7 @@ family_history = st.radio("Чи є у вас сімейна історія за�
 radiation = st.radio("Чи мали випадок значного радіаційного опромінення?", ["Ні", "Так"])
 iodine = st.radio("Чи є у вас дефіцит йоду?", ["Ні", "Так"])
 smoking = st.radio("Чи палите ви?", ["Ні", "Так"])
-obesity = st.radio("Наявність жиріння", ["Ні", "Так"])
+obesity = st.radio("Наявність ожиріння", ["Ні", "Так"])
 diabetes = st.radio("Наявність цукрового діабету", ["Ні", "Так"])
 
 tsh = st.number_input("TSH рівень", min_value=0.0, format="%.2f")
@@ -175,11 +173,11 @@ nodule = st.number_input("Розмір вузла (мм)", min_value=0.0, format
 
 exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
 
-if st.button("Прогноз"):
+if st.button("Отримати прогноз"):
 
     with st.spinner('АІ-система створює персональний прогноз...'):
-        # Затримка для симуляції часу обчислень (4 секунди)
         time.sleep(4)
+        
     user_input = {
         'Age': age,
         'Gender': gender_code,
@@ -240,7 +238,7 @@ if st.button("Прогноз"):
     
 
     st.markdown("### 🩺 Результати прогнозу:")
-    st.success(f"**Рівень ризику:** {risk_labels.get(predicted_risk, '???')}")
+    st.success(f"**Рівень ризику появи злоякісної пухлини:** {risk_labels.get(predicted_risk, '???')}")
     st.info(f"**Ймовірний тип утворення:** {diagnosis_labels.get(predicted_diag, '???')}")
     
     if predicted_diag == 1:
