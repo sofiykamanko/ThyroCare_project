@@ -159,12 +159,12 @@ else:
 
 # Медичні показники 
 
-family_history = st.radio("Чи є у вас сімейна історія захворювання?", ["Ні", "Так"], index=None)
-radiation = st.radio("Чи мали випадок значного радіаційного опромінення?", ["Ні", "Так"], index=None)
-iodine = st.radio("Чи є у вас дефіцит йоду?", ["Ні", "Так"], index=None)
-smoking = st.radio("Чи палите ви?", ["Ні", "Так"], index=None)
-obesity = st.radio("Наявність ожиріння", ["Ні", "Так"], index=None)
-diabetes = st.radio("Наявність цукрового діабету", ["Ні", "Так"], index=None)
+family_history = st.radio("Чи є у вас сімейна історія захворювання?", ["Так","Ні"], index=None)
+radiation = st.radio("Чи мали випадок значного радіаційного опромінення?", ["Так","Ні"], index=None)
+iodine = st.radio("Чи є у вас дефіцит йоду?", ["Так","Ні"], index=None)
+smoking = st.radio("Чи палите ви?", ["Так","Ні"], index=None)
+obesity = st.radio("Наявність ожиріння", ["Так","Ні"], index=None)
+diabetes = st.radio("Наявність цукрового діабету", ["Так","Ні"], index=None)
 
 tsh = st.number_input(
     "Рівень тиреотропного гормону (у мкМО/мл):", 
