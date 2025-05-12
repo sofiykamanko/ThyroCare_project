@@ -192,72 +192,77 @@ nodule = st.number_input("Розмір вузла (у см):", min_value=0.0, fo
 exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
 
 if st.button("Отримати прогноз"):
-
-    with st.spinner('АІ-система створює персональний прогноз...'):
-        time.sleep(4)
+    if (age == 0 or gender is None or country_code == -1 or ethnicity_code == -1 or
+        family_history is None or radiation is None or iodine is None or smoking is None or 
+        obesity is None or diabetes is None or tsh == 0.0 or t3 == 0.0 or t4 == 0.0 or nodule == 0.0):
         
-    user_input = {
-        'Age': age,
-        'Gender': gender_code,
-        'Country': country_code,
-        'Ethnicity': ethnicity_code,
-        'Family_History': 1 if family_history == "Так" else 0,
-        'Radiation_Exposure': 1 if radiation == "Так" else 0,
-        'Iodine_Deficiency': 1 if iodine == "Так" else 0,
-        'Smoking': 1 if smoking == "Так" else 0,
-        'Obesity': 1 if obesity == "Так" else 0,
-        'Diabetes': 1 if diabetes == "Так" else 0,
-        'TSH_Level': tsh,
-        'T3_Level': t3,
-        'T4_Level': t4,
-        'Nodule_Size': nodule
-    }
-    try:
-        user_input['Combination'] = str(user_input['Smoking']) + str(user_input['Obesity']) + str(user_input['Diabetes'])
-        user_input['Combination'] = int(user_input['Combination'], 2)
-    except Exception as e:
-        st.error(f"Помилка при обчисленні ознак: {e}")
+        st.warning("❗ Будь ласка, заповніть всі поля для отримання прогнозу.")
+    else:
+        with st.spinner('АІ-система створює персональний прогноз...'):
+            time.sleep(4)
         
-    X_user = pd.DataFrame([user_input])
-    X_user = X_user.drop(columns=['Diabetes', 'Obesity', 'Smoking'])  
+        user_input = {
+            'Age': age,
+            'Gender': gender_code,
+            'Country': country_code,
+            'Ethnicity': ethnicity_code,
+            'Family_History': 1 if family_history == "Так" else 0,
+            'Radiation_Exposure': 1 if radiation == "Так" else 0,
+            'Iodine_Deficiency': 1 if iodine == "Так" else 0,
+            'Smoking': 1 if smoking == "Так" else 0,
+            'Obesity': 1 if obesity == "Так" else 0,
+            'Diabetes': 1 if diabetes == "Так" else 0,
+            'TSH_Level': tsh,
+            'T3_Level': t3,
+            'T4_Level': t4,
+            'Nodule_Size': nodule
+        }
+        try:
+            user_input['Combination'] = str(user_input['Smoking']) + str(user_input['Obesity']) + str(user_input['Diabetes'])
+            user_input['Combination'] = int(user_input['Combination'], 2)
+        except Exception as e:
+            st.error(f"Помилка при обчисленні ознак: {e}")
+        
+        X_user = pd.DataFrame([user_input])
+        X_user = X_user.drop(columns=['Diabetes', 'Obesity', 'Smoking'])  
 
-    cols_to_scale = ['TSH_Level', 'T3_Level', 'T4_Level', 'Nodule_Size']
-    X_user[cols_to_scale] = scaler.transform(X_user[cols_to_scale])
+        cols_to_scale = ['TSH_Level', 'T3_Level', 'T4_Level', 'Nodule_Size']
+        X_user[cols_to_scale] = scaler.transform(X_user[cols_to_scale])
 
-    y_prob_risk = model_risk.predict_proba(X_user)[0]
-    thresholds_risk = np.load(path_thresholds_risk)
-    if y_prob_risk[0] >= 0.5:  # Клас 1 
-        predicted_risk = 1
-    elif y_prob_risk[1] >= 0.5:  # Клас 2 
-        predicted_risk = 2
-    elif y_prob_risk[2] >= 0.5:  # Клас 3 
-        predicted_risk = 3
-    else:
-        predicted_risk = 3
+        y_prob_risk = model_risk.predict_proba(X_user)[0]
+        thresholds_risk = np.load(path_thresholds_risk)
+        if y_prob_risk[0] >= 0.5:  # Клас 1 
+            predicted_risk = 1
+        elif y_prob_risk[1] >= 0.5:  # Клас 2 
+            predicted_risk = 2
+        elif y_prob_risk[2] >= 0.5:  # Клас 3 
+            predicted_risk = 3
+        else:
+            predicted_risk = 3
     
-    risk_labels = {1: "Низький ризик", 2: "Середній ризик", 3: "Високий ризик"}
+        risk_labels = {1: "Низький ризик", 2: "Середній ризик", 3: "Високий ризик"}
     
-    if exclude_country_ethnicity:
-        X_user = X_user.drop(columns=['Country', 'Ethnicity'])  
-        model_diag_used = model_diag2  
-        threshold_diag = 0.355  
-    else:
-        model_diag_used = model_diag  
-        threshold_diag = 0.24  
+        if exclude_country_ethnicity:
+            X_user = X_user.drop(columns=['Country', 'Ethnicity'])  
+            model_diag_used = model_diag2  
+            threshold_diag = 0.355  
+        else:
+            model_diag_used = model_diag  
+            threshold_diag = 0.24  
     
-    y_prob_diag = model_diag_used.predict_proba(X_user)[0]
+        y_prob_diag = model_diag_used.predict_proba(X_user)[0]
 
-    if y_prob_diag[1] >= threshold_diag:
-        predicted_diag = 1  
-    else:
-        predicted_diag = 0  
+        if y_prob_diag[1] >= threshold_diag:
+            predicted_diag = 1  
+        else:
+            predicted_diag = 0  
 
-    diagnosis_labels = {0: "Доброякісний вузол", 1: "Злоякісне утворення"}
+        diagnosis_labels = {0: "Доброякісний вузол", 1: "Злоякісне утворення"}
     
 
-    st.markdown("### 🩺 Результати прогнозу:")
-    st.success(f"**Рівень ризику появи злоякісної пухлини:** {risk_labels.get(predicted_risk, '???')}")
-    st.info(f"**Ймовірний тип утворення:** {diagnosis_labels.get(predicted_diag, '???')}")
+        st.markdown("### 🩺 Результати прогнозу:")
+        st.success(f"**Рівень ризику появи злоякісної пухлини:** {risk_labels.get(predicted_risk, '???')}")
+        st.info(f"**Ймовірний тип утворення:** {diagnosis_labels.get(predicted_diag, '???')}")
     
-    if predicted_diag == 1:
-        st.warning("⚠️ **Рекомендація:** Ймовірне злоякісне утворення. Рекомендується звернутися до лікаря для додаткових обстежень та консультацій.")
+        if predicted_diag == 1:
+            st.warning("⚠️ **Рекомендація:** Ймовірне злоякісне утворення. Рекомендується звернутися до лікаря для додаткових обстежень та консультацій.")
