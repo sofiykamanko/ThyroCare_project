@@ -134,7 +134,7 @@ if country_input:
     else:
         country_code = max(country_to_code.values()) + 1
         country_to_code[country_input] = country_code
-        st.info(f"Нова країна '{country_input}' додана з кодом {country_code}")
+        #st.info(f"Нова країна '{country_input}' додана з кодом {country_code}")
 else:
     st.warning("❗ Введіть назву країни")
     country_code = -1  
@@ -151,7 +151,7 @@ if ethnicity_input:
     else:
         ethnicity_code = max(ethnicity_to_code.values()) + 1
         ethnicity_to_code[ethnicity_input] = ethnicity_code
-        st.info(f"Нова етнічна група '{ethnicity_input}' додана з кодом {ethnicity_code}")
+        #st.info(f"Нова етнічна група '{ethnicity_input}' додана з кодом {ethnicity_code}")
 else:
     st.warning("❗ Введіть назву етнічної групи")
     ethnicity_code = -1
@@ -166,7 +166,7 @@ smoking = st.radio("Чи палите ви?", ["Ні", "Так"])
 obesity = st.radio("Наявність ожиріння", ["Ні", "Так"])
 diabetes = st.radio("Наявність цукрового діабету", ["Ні", "Так"])
 
-tsh = st.number_input("TSH рівень", min_value=0.0, format="%.2f")
+tsh = st.number_input("Рівень тиреотропного гормону (TSH):", min_value=0.0, format="%.2f")
 t3 = st.number_input("T3 рівень", min_value=0.0, format="%.2f")
 t4 = st.number_input("T4 рівень", min_value=0.0, format="%.2f")
 nodule = st.number_input("Розмір вузла (мм)", min_value=0.0, format="%.2f")
