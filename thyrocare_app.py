@@ -142,7 +142,7 @@ else:
 
 # Етнічна група 
 st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне походження.</div>', unsafe_allow_html=True)
-st.markdown("Наприклад, `" + "`, `".join(ethnicity_to_code.keys()) + "та інші.")
+st.markdown("Наприклад, `" + "`, `".join(ethnicity_to_code.keys()) + "`"+ "та інші.")
 ethnicity_input = st.text_input("Введіть без пробілів.").strip().lower()
 
 if ethnicity_input:
