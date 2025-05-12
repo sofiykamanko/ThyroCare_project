@@ -97,7 +97,7 @@ st.markdown("""
 st.markdown("<div class='card'>Введіть основні медичні показники, щоб оцінити ризик появи захворювання:</div>", unsafe_allow_html=True)
 
 age = st.number_input("Вік", 0, 120, step=1)
-gender = st.radio("Стать", ["Жіноча", "Чоловіча"])
+gender = st.radio("Стать", ["Жіноча", "Чоловіча"],index=None)
 gender_code = 0 if gender == "Жіноча" else 1
 
 
