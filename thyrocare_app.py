@@ -128,9 +128,8 @@ st.markdown('<div class="country-label">Вкажіть країну вашого
 
 country_input = st.selectbox(
     "Виберіть країну", 
-    options=visible_countries + ["Інше"], 
-    help="Виберіть вашу країну зі списку або введіть нову.",
-    index=0
+    options=[""] + visible_countries + ["Інше"],  
+    help="Виберіть вашу країну зі списку або введіть нову."
 )
 
 if country_input == "Інше":
@@ -151,9 +150,8 @@ st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне
 
 ethnicity_input = st.selectbox(
     "Виберіть етнічну групу", 
-    options=list(ethnicity_to_code.keys()) + ["Інше"],  # Додано варіант "Інше"
-    help="Виберіть вашу етнічну групу зі списку або введіть нову.",
-    index=0
+    options=[""] + list(ethnicity_to_code.keys()) + ["Інше"], 
+    help="Виберіть вашу етнічну групу зі списку або введіть нову."
 )
 
 if ethnicity_input == "Інше":
