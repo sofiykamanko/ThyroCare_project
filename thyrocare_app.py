@@ -127,7 +127,6 @@ st.markdown("""
 # Країна
 st.markdown('<div class="country-label">Вкажіть країну вашого проживання.</div>', unsafe_allow_html=True)
 
-# Додано порожнє значення за замовчуванням
 country_input = st.selectbox(
     "Виберіть країну", 
     options=[""] + visible_countries + ["Інше"], 
@@ -149,7 +148,6 @@ else:
 # Етнічна група
 st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне походження.</div>', unsafe_allow_html=True)
 
-# Додано порожнє значення за замовчуванням
 ethnicity_input = st.selectbox(
     "Виберіть етнічну групу", 
     options=[""] + list(ethnicity_to_code.keys()) + ["Інше"],  
@@ -202,7 +200,12 @@ t4 = st.number_input(
     help="Тироксин (T4) є основним гормоном, що виробляється щитовидною залозою. Нормальний рівень для дорослої людини: 5–12 мкг/дл."
 )
 
-nodule = st.number_input("Розмір вузла (у см):", min_value=0.0, format="%.2f",step=0.1,)
+nodule = st.number_input(
+    "Розмір вузла (у см):", 
+    min_value=0.0, 
+    format="%.2f", 
+    step=0.1,
+    help="Вузол — це аномальне утворення в тканині щитовидної залози, яке може бути доброякісним або злоякісним. Вкажіть розмір цього утчорення, якщо воно у вас є.")
 
 exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
 
