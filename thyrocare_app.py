@@ -124,11 +124,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Країна 
+# Країна
 st.markdown('<div class="country-label">Вкажіть країну вашого проживання.</div>', unsafe_allow_html=True)
 
+# Додано порожнє значення за замовчуванням
 country_input = st.selectbox(
     "Виберіть країну", 
-    options=[""] + visible_countries + ["Інше"],  
+    options=[""] + visible_countries + ["Інше"], 
     help="Виберіть вашу країну зі списку або введіть нову."
 )
 
@@ -139,18 +141,18 @@ if country_input == "Інше":
         country_to_code[country_input] = country_code  
     else:
         country_code = -1  
-        st.warning("❗ Введіть назву країни")
-else:
+elif country_input:
     country_code = country_to_code.get(country_input.lower(), -1)
-    if country_code == -1:
-        st.warning("❗ Країна не знайдена в системі.")
+else:
+    country_code = -1  
 
 # Етнічна група
 st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне походження.</div>', unsafe_allow_html=True)
 
+# Додано порожнє значення за замовчуванням
 ethnicity_input = st.selectbox(
     "Виберіть етнічну групу", 
-    options=[""] + list(ethnicity_to_code.keys()) + ["Інше"], 
+    options=[""] + list(ethnicity_to_code.keys()) + ["Інше"],  
     help="Виберіть вашу етнічну групу зі списку або введіть нову."
 )
 
@@ -161,12 +163,10 @@ if ethnicity_input == "Інше":
         ethnicity_to_code[ethnicity_input] = ethnicity_code  
     else:
         ethnicity_code = -1  
-        st.warning("❗ Введіть назву етнічної групи")
-else:
+elif ethnicity_input:
     ethnicity_code = ethnicity_to_code.get(ethnicity_input.lower(), -1)
-    if ethnicity_code == -1:
-        st.warning("❗ Етнічна група не знайдена в системі.")
-
+else:
+    ethnicity_code = -1  
 
 
 # Медичні показники 
