@@ -197,7 +197,7 @@ exclude_country_ethnicity = st.checkbox("Не використовувати д�
 if st.button("Отримати прогноз"):
     if (age == 0 or gender is None or country_code == -1 or ethnicity_code == -1 or
         family_history is None or radiation is None or iodine is None or smoking is None or 
-        obesity is None or diabetes is None or tsh == 0.0 or t3 == 0.0 or t4 == 0.0 or nodule == 0.0):
+        obesity is None or diabetes is None or tsh == 0.0 or t3 == 0.0 or t4 == 0.0 ):
         
         st.warning("❗ Будь ласка, заповніть всі поля для отримання прогнозу.")
     else:
@@ -264,8 +264,8 @@ if st.button("Отримати прогноз"):
     
 
         st.markdown("### 🩺 Результати прогнозу:")
-        st.success(f"**Ризик онкологічного характеру новоутворення:** {risk_labels.get(predicted_risk, '???')}")
-        st.info(f"**Ймовірний тип новоутворення:** {diagnosis_labels.get(predicted_diag, '???')}")
+        st.success(f"**Ризик розвитку онкологічного захворювання:** {risk_labels.get(predicted_risk, '???')}")
+        st.info(f"**Ймовірний характер вузлів/пухлини:** {diagnosis_labels.get(predicted_diag, '???')}")
     
         if predicted_diag == 1:
             st.warning("⚠️ **Рекомендація:** Ймовірне злоякісне утворення. Рекомендується звернутися до лікаря для додаткових обстежень та консультацій.")
