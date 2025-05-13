@@ -125,36 +125,48 @@ st.markdown("""
 
 # Країна 
 st.markdown('<div class="country-label">Вкажіть країну вашого проживання.</div>', unsafe_allow_html=True)
-st.markdown("Наприклад, " + ", ".join(f"`{c}`" for c in visible_countries)+ " та інші.")
-country_input = st.text_input("Введіть без зайвих пробілів, з великої літери.").strip().lower()
 
-if country_input:
-    if country_input in country_to_code:
-        country_code = country_to_code[country_input]
+country_input = st.selectbox(
+    "Виберіть країну", 
+    options=visible_countries + ["Інше"], 
+    help="Виберіть вашу країну зі списку або введіть нову."
+)
+
+if country_input == "Інше":
+    country_input = st.text_input("Введіть назву країни").strip().lower()
+    if country_input:
+        country_code = max(country_to_code.values()) + 1  
+        country_to_code[country_input] = country_code  
     else:
-        country_code = max(country_to_code.values()) + 1
-        country_to_code[country_input] = country_code
-        #st.info(f"Нова країна '{country_input}' додана з кодом {country_code}")
+        country_code = -1  
+        st.warning("❗ Введіть назву країни")
 else:
-    st.warning("❗ Введіть назву країни")
-    country_code = -1  
+    country_code = country_to_code.get(country_input.lower(), -1)
+    if country_code == -1:
+        st.warning("❗ Країна не знайдена в системі.")
 
-
-# Етнічна група 
+# Етнічна група
 st.markdown('<div class="ethnicity-label">Вкажіть ваше етнічне походження.</div>', unsafe_allow_html=True)
-st.markdown("Наприклад, `" + "`, `".join(ethnicity_to_code.keys()) + "`"+ "та інші.")
-ethnicity_input = st.text_input("Введіть без зайвих пробілів.").strip().lower()
 
-if ethnicity_input:
-    if ethnicity_input in ethnicity_to_code:
-        ethnicity_code = ethnicity_to_code[ethnicity_input]
+ethnicity_input = st.selectbox(
+    "Виберіть етнічну групу", 
+    options=list(ethnicity_to_code.keys()) + ["Інше"],  # Додано варіант "Інше"
+    help="Виберіть вашу етнічну групу зі списку або введіть нову."
+)
+
+if ethnicity_input == "Інше":
+    ethnicity_input = st.text_input("Введіть етнічну групу").strip().lower()
+    if ethnicity_input:
+        ethnicity_code = max(ethnicity_to_code.values()) + 1  
+        ethnicity_to_code[ethnicity_input] = ethnicity_code  
     else:
-        ethnicity_code = max(ethnicity_to_code.values()) + 1
-        ethnicity_to_code[ethnicity_input] = ethnicity_code
-        #st.info(f"Нова етнічна група '{ethnicity_input}' додана з кодом {ethnicity_code}")
+        ethnicity_code = -1  
+        st.warning("❗ Введіть назву етнічної групи")
 else:
-    st.warning("❗ Введіть назву етнічної групи")
-    ethnicity_code = -1
+    ethnicity_code = ethnicity_to_code.get(ethnicity_input.lower(), -1)
+    if ethnicity_code == -1:
+        st.warning("❗ Етнічна група не знайдена в системі.")
+
 
 
 # Медичні показники 
