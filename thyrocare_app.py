@@ -7,7 +7,7 @@ import time
 
 
 path_model_risk='model_risk.pkl'
-path_model_diag='model_diag_super.pkl'
+path_model_diag='model_diag.pkl'
 path_scaler='scaler.pkl'
 path_thresholds_risk='thresholds_risk.npy'
 path_thresholds_diag='threshold_diag.npy'
