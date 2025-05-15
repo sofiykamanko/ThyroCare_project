@@ -285,26 +285,4 @@ if st.button("Отримати прогноз"):
         if predicted_diag == 1:
             st.warning("⚠️ **Рекомендація:** Ймовірне злоякісне утворення. Рекомендується звернутися до лікаря для додаткових обстежень та консультацій.")
 
-        import matplotlib.pyplot as plt
-
-    # Відображення ймовірностей
-        def plot_risk_and_diagnosis(y_prob_risk, y_prob_diag):
-            fig, ax = plt.subplots(1, 2, figsize=(12, 6))
-
-    # Графік для прогнозу ризику
-            ax[0].bar([1, 2, 3], y_prob_risk, color=['green', 'orange', 'red'])
-            ax[0].set_title('Ймовірність ризику')
-            ax[0].set_xlabel('Клас ризику')
-            ax[0].set_ylabel('Ймовірність')
-
-    # Графік для прогнозу діагнозу
-            ax[1].bar([0, 1], y_prob_diag, color=['blue', 'purple'])
-            ax[1].set_title('Ймовірність типу пухлини')
-            ax[1].set_xlabel('Тип пухлини')
-            ax[1].set_ylabel('Ймовірність')
-
-            plt.tight_layout()
-            st.pyplot(fig)
-
-        plot_risk_and_diagnosis(y_prob_risk, y_prob_diag)
-
+        
