@@ -96,7 +96,7 @@ st.markdown("""
 
 st.markdown("<div class='card'>Введіть основні медичні показники, щоб оцінити ризик появи захворювання:</div>", unsafe_allow_html=True)
 
-age = st.number_input("Вік", 0, 120, step=1, index=None)
+age = st.number_input("Вік", 0, 120, step=1,value=None)
 gender = st.radio("Стать", ["Жіноча", "Чоловіча"],index=None)
 gender_code = 0 if gender == "Жіноча" else 1
 
@@ -181,7 +181,7 @@ tsh = st.number_input(
     min_value=0.0, 
     format="%.2f",
     step=0.1,
-    index=None,
+    value=None,
     help="Тиреотропний гормон регулює роботу щитовидної залози.\nНормальний рівень для дорослої людини: від 0,3-0,4 до 4,0-4,2 мкМО/мл."
 )
 
@@ -190,7 +190,7 @@ t3 = st.number_input(
     min_value=0.0, 
     format="%.2f", 
     step=0.1,
-    index=None,
+    value=None,
     help="Трійодтиронін (T3) є активною формою тиреоїдних гормонів і важливий для регуляції метаболізму в організмі.\nНормальний рівень для дорослої людини: 0,8–2,0 мкг/дл. "
 )
 
@@ -199,7 +199,7 @@ t4 = st.number_input(
     min_value=0.0, 
     format="%.2f", 
     step=0.1,
-    index=None,
+    value=None,
     help="Тироксин (T4) є основним гормоном, що виробляється щитовидною залозою. Нормальний рівень для дорослої людини: 5–12 мкг/дл."
 )
 
@@ -208,7 +208,7 @@ nodule = st.number_input(
     min_value=0.0, 
     format="%.2f", 
     step=0.1,
-    index=None,
+    value=None,
     help="Вузол — це аномальне утворення в тканині щитовидної залози, яке може бути доброякісним або злоякісним. Вкажіть розмір цього утворення, якщо воно у вас є.")
 
 exclude_country_ethnicity = st.checkbox("Не використовувати дані про країну та етнічність для діагностики.")
