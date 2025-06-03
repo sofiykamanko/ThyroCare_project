@@ -8,15 +8,15 @@ ThyroCare is an AI-based platform for predicting thyroid cancer risk using machi
 - Models trained on imbalanced medical datasets for high accuracy.
 
 ## Models:
-- `model_diag1.pkl`: Модель для діагностики раку щитоподібної залози.
-- `model_diag2.pkl`: Альтернативна модель для оцінки діагнозу без врахування країн та етнічності.
-- `model_risk.pkl`: Модель для оцінки ризику.
-- `scaler.pkl`: Масштабуючий об'єкт для нормалізації вхідних даних.
+- `model_diag1.pkl`: Model for diagnosing thyroid cancer.
+- `model_diag2.pkl`: Alternative model for diagnosing without considering countries and ethnicity.
+- `model_risk.pkl`: Model for risk assessment.
+- `scaler.pkl`: Scaler object for normalizing input data.
 
 ## Uploaded Files:
-- `threshold_diag.npy`: Пороги для визначення діагнозу.
-- `thresholds_risk.npy`: Пороги для визначення рівня ризику.
+- `threshold_diag.npy`: Thresholds for diagnosing.
+- `thresholds_risk.npy`: Thresholds for determining risk levels.
 
 ## Important Files:
-- `thyrocare_app.py`: Основний файл для запуску веб-додатку.
+- `thyrocare_app.py`: Main file for running the web application.
 
